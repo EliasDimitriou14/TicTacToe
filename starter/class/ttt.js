@@ -30,6 +30,121 @@ class TTT {
 
   static checkWin(grid) {
 
+    let flag = false;
+    let countO = 0;
+    let countX = 0;
+    let winner = ' ';
+    let count = 0;
+
+    // Record empty grid as no winner
+    grid.forEach((row) => {
+      row.forEach((ele) => {
+        if(ele !== ' '){
+          count++;
+          flag = true;
+        }
+      });
+    });
+    // Record empty grid as no winner
+
+    // Recognize horizontal wins
+    grid.forEach((row) => {
+      countO = 0;
+      countX = 0;
+      row.forEach((ele) => {
+        if(ele === 'O'){
+          countO++;
+        }else if(ele === 'X'){
+          countX++;
+        }
+      });
+      if(countO === row.length){
+        winner = 'O';
+      }else if(countX === row.length){
+        winner = 'X';
+      }
+    });
+    if(winner === 'O' || winner === 'X'){
+      return winner;
+    }
+    // Recognize horizontal wins
+
+    // Recognize vertical wins
+    winner = ' ';
+    for(let i = 0; i < grid.length; i++){
+      countO = 0;
+      countX = 0;
+      for(let j = 0; j < grid.length; j++){
+        if(grid[j][i] === 'O'){
+          countO++;
+        }else if(grid[j][i] === 'X'){
+          countX++;
+        }
+      }
+      if(countO === grid.length){
+        winner = 'O';
+      }else if(countX === grid.length){
+        winner = 'X';
+      }
+    }
+    if(winner === 'O' || winner === 'X'){
+      return winner;
+    }
+    // Recognize vertical wins
+
+
+    // Recognize diagonal wins
+    winner = ' ';
+    countO = countX = 0;
+    // Main diagonal
+    for(let i = 0; i < grid.length; i++){
+      if(grid[i][i] === 'O'){
+        countO++;
+      }else if(grid[i][i] === 'X'){
+        countX++;
+      }
+    }
+    if(countO === grid.length){
+      winner = 'O';
+    }else if(countX === grid.length){
+      winner = 'X';
+    }
+    if(winner === 'O' || winner === 'X'){
+      return winner;
+    }
+    // Main diagonal
+
+    // Secondary diagonal
+    countO = countX = 0;
+    for(let i = 0; i < grid.length; i++){
+      for(let j = 0; j < grid.length; j++){
+        if(i + j === grid.length - 1){
+          if(grid[i][j] === 'O'){
+            countO++;
+          }else if(grid[i][j] === 'X'){
+            countX++;
+          }
+        }
+      }
+    }
+    if(countO === grid.length){
+      winner = 'O';
+    }else if(countX === grid.length){
+      winner = 'X';
+    }
+    // Secondary diagonal
+    // Recognize diagonal wins
+
+    if(winner === 'O' || winner === 'X'){
+      return winner;
+    }else if(count === grid.length * grid.length){
+      return 'T';
+    }else if(flag === false){
+      return flag;
+    }else{
+      return false;
+    }
+
     // Return 'X' if player X wins
     // Return 'O' if player O wins
     // Return 'T' if the game is a tie

@@ -12,13 +12,22 @@ class TTT {
                  [' ',' ',' ']]
 
     this.cursor = new Cursor(3, 3);
+    //const cursorDown = this.cursor.down.bind(this.cursor);
 
     // Initialize a 3x3 tic-tac-toe grid
     Screen.initialize(3, 3);
     Screen.setGridlines(true);
 
+    //this.cursor.setBackgroundColor();
+
     // Replace this with real commands
     Screen.addCommand('t', 'test command (remove)', TTT.testCommand);
+    // Screen.addCommand('up', 'move cursor up', TTT.upCommand);
+    // Screen.addCommand('down', 'move cursor down', TTT.downCommand);
+    // Screen.addCommand('left', 'move cursor left', TTT.leftCommand);
+    // Screen.addCommand('right', 'move cursor right', TTT.rightCommand);
+    // Screen.addCommand('x', 'place X at the cursor position', TTT.xCommand);
+    // Screen.addCommand('o', 'place O at the cursor position', TTT.oCommand);
 
     Screen.render();
   }
@@ -27,6 +36,35 @@ class TTT {
   static testCommand() {
     console.log("TEST COMMAND");
   }
+
+  // static xCommand() {
+  //   Screen.setGrid(this.cursor.row, this.cursor.col, 'X');
+  // }
+
+  // static oCommand() {
+  //   Screen.setGrid(this.cursor.row, this.cursor.col, 'O');
+  // }
+
+  // static upCommand() {
+  //   console.log("UP COMMAND");
+  //   this.cursor.resetBackgroundColor();
+  // }
+
+  // static downCommand() {
+  //   this.cursor.resetBackgroundColor();
+  //   console.log("DOWN COMMAND");
+  //   cursorDown();
+  //   this.cursor.setBackgroundColor();
+  // }
+
+  // static leftCommand() {
+  //   console.log("LEFT COMMAND");
+  // }
+
+  // static rightCommand() {
+  //   console.log("RIGHT COMMAND");
+  // }
+
 
   static checkWin(grid) {
 

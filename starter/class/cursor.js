@@ -17,50 +17,51 @@ class Cursor {
 
   resetBackgroundColor() {
     Screen.setBackgroundColor(this.row, this.col, this.gridColor);
+    Screen.render();
   }
 
   setBackgroundColor() {
     Screen.setBackgroundColor(this.row, this.col, this.cursorColor);
+    Screen.render();
   }
 
   up() {
     // Move cursor up
-    console.log('UP COMMAND');
     if(this.row > 0){
       this.resetBackgroundColor();
       this.row--;
       this.setBackgroundColor();
+      Screen.render();
     }
-
   }
 
   down() {
     // Move cursor down
-    console.log('DOWN COMMAND');
     if(this.row < this.numRows - 1){
       this.resetBackgroundColor();
       this.row++;
       this.setBackgroundColor();
+      Screen.render();
     }
   }
 
   left() {
     // Move cursor left
-    console.log('LEFT COMMAND');
     if(this.col > 0){
       this.resetBackgroundColor();
       this.col--;
       this.setBackgroundColor();
+      Screen.render();
     }
   }
 
   right() {
     // Move cursor right
-    console.log('RIGHT COMMAND');
     if(this.col < this.numCols - 1){
       this.resetBackgroundColor();
       this.col += 1;
       this.setBackgroundColor();
+      Screen.render();
     }
   }
 

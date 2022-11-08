@@ -19,32 +19,33 @@ class TTT {
 
     this.cursor.setBackgroundColor();
 
-
-    // Replace this with real commands
-    // Screen.addCommand('t', 'test command (remove)', TTT.testCommand);
     Screen.addCommand('up', 'move cursor up', this.cursor.up.bind(this.cursor));
     Screen.addCommand('down', 'move cursor down', this.cursor.down.bind(this.cursor));
     Screen.addCommand('left', 'move cursor left', this.cursor.left.bind(this.cursor));
     Screen.addCommand('right', 'move cursor right', this.cursor.right.bind(this.cursor));
-    //Screen.addCommand('space', 'places X or O according to player turn',TTT.makeMove.bind(this.cursor));
+    Screen.addCommand('space', 'places X or O according to player turn',this.makeMove.bind(this));
 
     Screen.render();
   }
 
-  // Remove this
-  // static testCommand() {
-  //   console.log("TEST COMMAND");
-  // }
-
-  // static makeMove() {
-  //   console.log("MOVE COMMAND");
-  //   Screen.setGrid(this.cursor.row, this.cursor.col, this.playerTurn)
-  //   if(this.playerTurn === 'O'){
-  //     this.playerTurn = 'X';
-  //   }else{
-  //     this.playerTurn = 'O';
-  //   }
-  // }
+  makeMove() {
+    if(this.grid[this.cursor.row][this.cursor.col] === ' '){
+      Screen.setGrid(this.cursor.row, this.cursor.col, this.playerTurn)
+      Screen.render();
+      this.grid[this.cursor.row][this.cursor.col] = this.playerTurn;
+      let winner = TTT.checkWin(this.grid)
+      if(winner === false){
+        console.log("No winner yet...")
+      }else{
+        TTT.endGame(winner);
+      }
+      if(this.playerTurn === 'O'){
+        this.playerTurn = 'X';
+      }else{
+        this.playerTurn = 'O';
+      }
+    }
+  }
 
 
   static checkWin(grid) {
